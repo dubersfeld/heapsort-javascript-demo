@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Heapsort</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="heapsortDemo.js"></script>
+<link rel="stylesheet" href="heapsortDemo.css">
+</head>
+
+<body id="all">
+
+  <nav>
+  <a href="/ALGORITHMS/HEAPSORT/heapsort.html">Heapsort main page</a>
+  </nav>
+
+  <div id="intro">
+  <h1>Heapsort algorithm demonstration</h1>
+  <p>I present here a Javascript only demonstration of Heapsort. You can change the array size from 8 to 15 elements. Then you can randomize its content. The animation speed can also be changed.
+  </p>
+  <p>At each animation step the nodes that are swapped are highlighted in blue. The nodes that are outside of the actual heap are highlighted in gray (they have achieved their final value).
+ 
+  </p>
+  </div>
+
+
+  <div id="display">
+    <canvas id="canvas" width="620" height="600">
+    Your browser does not support HTML 5 Canvas
+    </canvas>
+    <a id=animanc></a>
+    <footer>
+    <br><br>
+    Dominique Ubersfeld, Cachan, France
+    </footer>
+    </div>
+
+
+
+  <div id="controls">
+
+    <div id="change">
+      <p>Chose the number of elements to sort, 8 by default</p>    
+      <form name="elements" id="numel">    
+        <input type="radio" name="number" value="8" checked> 8<br>
+        <input type="radio" name="number" value="9"> 9<br>
+        <input type="radio" name="number" value="10"> 10<br>
+        <input type="radio" name="number" value="11"> 11<br>
+        <input type="radio" name="number" value="12"> 12<br>
+        <input type="radio" name="number" value="13"> 13<br>
+        <input type="radio" name="number" value="14"> 14<br>
+        <input type="radio" name="number" value="15"> 15<br>
+        <input type="submit" name="submit-btn" value="Change">
+      </form>
+    </div>
+
+    <div id="randomize">
+      <p>Click here to randomize the values to be sorted</p>
+      <form name="initialize" id="initelem">
+        <input type="submit" name="randomize-btn" value="Randomize">
+      </form>
+    </div>
+
+    <div id="anim">
+      <p>Start animation of the Heapsort algorithm</p>
+      <form id="stanim">
+        <input type="submit" name="stanim-btn" value="Start">
+      </form>
+
+      <label for="animSpeed">Animation speed</label>
+      <input type="range" id="animSpeed" min="5" max="100" step="5" value="20">
+    </div>
+
+  </div>
+
+</body>
+</html>
