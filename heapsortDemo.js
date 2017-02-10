@@ -639,4 +639,3 @@ function eventWindowLoaded() {
 }// canvasApp
 
 $(document).ready(eventWindowLoaded);
-//window.addEventListener('load', eventWindowLoaded, false);
