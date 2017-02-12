@@ -108,10 +108,7 @@ function canvasApp() {
       for (var i = this.mLength - 1; i >= 0; i--) {
         this.swap(0, i);
 
-        // used for animation only
-        results.push(this.aux.slice(0));
-        swaps.push(this.auxSwap.slice(0));
-        outnodes.push(this.auxOut.slice(0));
+        
 
         // main function
         this.mHeapSize--;
@@ -119,7 +116,12 @@ function canvasApp() {
 
         for (var j = 0; j < this.mLength; j++) {
           this.auxOut[j] = (j >= this.mHeapSize) ? 1 : 0;// mark nodes outside of the actual heap
-        }      
+        }
+
+	// used for animation only
+        results.push(this.aux.slice(0));
+        swaps.push(this.auxSwap.slice(0));
+        outnodes.push(this.auxOut.slice(0));      
       }// for
     };// heapSort
  
