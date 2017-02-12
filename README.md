@@ -13,4 +13,9 @@ The animation speed can be changed interactively.
 
 I closely followed the approach of Cormen described in his reference textbook.
 
+For a Java implementation of the Heap Sort algorithm please visit the repository:
+
+https://github.com/dubersfeld/heapsort-java-demo
+
+
 Dominique Ubersfeld

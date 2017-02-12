@@ -25,17 +25,14 @@ function canvasSupport() {
 } 
 
 
-function canvasApp() {  
-
+function canvasApp() { 
   var N = 8;// number of nodes
-
   var randomized = false;// flag
-
   var heap = null;
 
   var results = [];// array of arrays
-  var swaps = [];
-  var outnodes = []; 
+  var swaps = [];// array of arrays
+  var outnodes = [];// array of arrays 
  
   var delay = 500;
 
@@ -80,17 +77,17 @@ function canvasApp() {
           largest = l;
         } else {
           largest = j;
-        }// if
+        }
         if ( (r < this.mHeapSize) && ( this.values[ this.aux[r] ] > this.values[ this.aux[largest] ]) ) {
           largest = r;
-        }// if
+        }
 
         if (largest == j) {
           break; 
         } else {// one more iteration
           this.swap(j, largest);
           j = largest;
-        }// if
+        }
 
         results.push(this.aux.slice(0));
         swaps.push(this.auxSwap.slice(0));
@@ -101,27 +98,25 @@ function canvasApp() {
     this.build = function() {   
       for (var i = Math.floor(this.mLength / 2) - 1; i >= 0; i--) {
         this.maxHeapify(i);
-      }// for
+      }
     };// build
 
-    this.heapSort = function() {   
+    this.heapSort = function() {
       for (var i = this.mLength - 1; i >= 0; i--) {
         this.swap(0, i);
-
-        
 
         // main function
         this.mHeapSize--;
         this.maxHeapify(0);
 
         for (var j = 0; j < this.mLength; j++) {
-          this.auxOut[j] = (j >= this.mHeapSize) ? 1 : 0;// mark nodes outside of the actual heap
-        }
+          this.auxOut[j] = (j >= this.mHeapSize) ? 1 : 0;// mark nodes already outside of the actual heap
+        }  
 
-	// used for animation only
+   	// used for animation only
         results.push(this.aux.slice(0));
         swaps.push(this.auxSwap.slice(0));
-        outnodes.push(this.auxOut.slice(0));      
+        outnodes.push(this.auxOut.slice(0));    
       }// for
     };// heapSort
  
@@ -135,8 +130,8 @@ function canvasApp() {
   }// Heap
 
   var values = [];
- 
-  if (!canvasSupport) {
+
+  if (!canvasSupport()) {
     alert("canvas not supported");
     return;
   } else {
@@ -156,9 +151,7 @@ function canvasApp() {
   var xPos = [];
   var yPos = [];
 
-
   function initGeometry() {
-
     var xPos3 = [30, 107, 184, 261, 338, 415, 492, 569]; 
     var xPos2 = [];
     var xPos1 = [];
@@ -181,7 +174,6 @@ function canvasApp() {
     xPos = xPos.concat(xPos1);
     xPos = xPos.concat(xPos2);
     xPos = xPos.concat(xPos3);
-
     yPos = yPos.concat(yPos0);
 
     for (var i = 0; i < 2; i++) {
@@ -291,51 +283,7 @@ function canvasApp() {
  
   }// renderArrayAnim
  
-
-  function renderArray(heap) {
- 
-    var spaceX = 40;
-    var spaceY = 40;
-    var width = N * spaceX;
-    var height = spaceY;
-    var xa = 10;
-    var ya = 50;
-    var yb = ya + spaceY;
-    var xb = xa + N * spaceX;
-    context.strokeStyle = "black";
-    context.lineWidth = 5;
- 
-    context.strokeRect(xa, ya, width, height);
-
-    context.beginPath();
-    for (var i = 1; i < N; i++) {
-      context.moveTo(xa + i * spaceX, ya);
-      context.lineTo(xa + i * spaceX, ya + spaceY); // draw line
-    }
-    context.stroke();    
-    context.closePath();
-
-    var xText = [];
-    var yText = ya + height/2;
-
-    for (var i = 0; i < N; i++) {
-      xText.push(xa + (i + 0.5) * spaceX);
-    }
-    
-    setTextStyle();
-
-    context.textBaseline = "middle";
-    context.textAlign = "center";
-
-    for (var i = 0; i < N; i++) {
-      context.fillText(values[ heap.aux[i] ], xText[i], yText);
-    }
-  
-  }// renderArray
- 
-
   function renderArrayInit() {
-   
     var spaceX = 40;
     var spaceY = 40;
     var width = N * spaceX;
@@ -375,9 +323,8 @@ function canvasApp() {
  
   }// renderArray
  
-
+ 
   function renderNodes() {
-
     setTextStyle();
 
     context.textBaseline = "middle";
@@ -395,30 +342,6 @@ function canvasApp() {
       }
     }
   }// renderNodes
-
-
-  function renderNodesRed() {
-
-    setTextStyle();
-
-    context.fillStyle    = '#ff0000';
-
-    context.textBaseline = "middle";
-    context.textAlign = "center";
-    for (var i = 0; i < N; i++) {
-      drawNode(nodes[i]);// nodes[i] array of Node
-    }
-
-    for (var i = 0; 2 * i < N - 2; i++) {
-      if (2 * i + 1 < N) {
-        drawConnect(nodes[i], nodes[2*i+1]);
-      }
-      if (2 * i + 2 < N) {
-        drawConnect(nodes[i], nodes[2*i+2]);
-      }
-    }
-  }// renderNodes
-
 
   function renderNodesInit() {
    
@@ -440,9 +363,7 @@ function canvasApp() {
     }
   }// renderNodesInit
 
-
-  function updateNodesAnim(aux, swap, auxOut) {
-    
+  function updateNodesAnim(aux, swap, auxOut) {    
     // set node values
     for (var i = 0; i < N; i++) {
       nodes[i].value = values[ aux[i] ];
@@ -463,19 +384,6 @@ function canvasApp() {
   }// updateNodesAnim
 
 
-  function updateNodes(heap) { 
-    for (var i = 0; i < N; i++) {
-      nodes[i].value = values[ heap.aux[i] ];
-    }
-  }// updateNodes
-
-  function renderInit() {
-    fillBackground();
-    renderNodesInit();
-    renderArrayInit();
-  }// renderInit
-
-
   function renderAnim(aux) {
      
     fillBackground();
@@ -486,8 +394,7 @@ function canvasApp() {
   }// renderAnim
 
 
-  function changeNumber(e) {
-       
+  function changeNumber(e) {  
     var numbers = e.target.elements["number"]; 
     var k;
     for (k = 0; k < numbers.length; k++) {
@@ -502,7 +409,7 @@ function canvasApp() {
     
   }// changeNumber
 
-
+  
   function init() {
     // reset animation arrays
     results.length = 0; 
@@ -514,15 +421,11 @@ function canvasApp() {
     }
 
     initNodes();
-
     fillBackground();
-
     renderNodesInit();
-
     renderArrayInit();
 
     heap = null;// reset
-
     heap = new Heap(values);
     heap.build();
     heap.heapSort();
@@ -608,7 +511,9 @@ function canvasApp() {
       // immediately set values and colors
       updateNodesAnim(tempAux, swaps[iAnim], outnodes[iAnim]);
       renderAnim(tempAux);
-  
+
+     
+				        
       // delayed
       tempAux = results[iAnim];
       setTimeout(function() {  
